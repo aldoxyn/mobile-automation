@@ -1,12 +1,9 @@
 ## Test automation project using Appium, Cucumber and Java
 <br/>
-<p>This repository contains Appium-Cucumber-Java project to perform test automation on Pinterest mobile app. I have used TestNg for performing assertions and Allure for generating reports. Used appium inspector for finding locators.</p>
+<p>This repository contains Appium-Cucumber-Java project to perform test automation on Example mobile app.</p>
 
 ---
 <br/>
-
-## Tested App
-[<img src="./Images/logo.png" width="15px;"> Pinterest](https://play.google.com/store/apps/details?id=com.pinterest)
 
 ## Pre-requisites (Installations):
 - JDK 17.0.1+
@@ -16,9 +13,6 @@
 - Appium
 - Node.js
 - Appium Inspector
-
-## Installation and Path setup Guideline
-Visit [Here](https://www.dev2qa.com/how-to-setup-appium-test-environment-for-windows/) for complete installation and path variable setup guideline.
 
 
 ## Dependencies:
@@ -35,13 +29,6 @@ Visit [Here](https://www.dev2qa.com/how-to-setup-appium-test-environment-for-win
 ## Running the Tests:
 - Open project in IntelliJ IDE.
 - Run TestNg.xml file.
-- _**Note:**_ for testing signup process, change the email address on Signup.feature file located at src/test/java/features.
-```Gherkin
-Examples:
-      | Email                  | Password | Age |
-      | fikkodoltu10@vusra.com | 1212121  | 25  |
-```
-<br/>
 
 ## Reports:
 Allure reports are generated in xml, html and json formats which are saved in allure-reports folder.
@@ -65,4 +52,4 @@ allure serve
 <br/><br/>
 
 ## Author:
-This project was developed by [Tariful Islam Abir](https://github.com/tarif-qups) under supervission of **Quality Up Services (QUPS)**.
+This project was developed by Aldo Lim, and forked from [Tariful Islam Abir](https://github.com/tarif-qups).
