@@ -1,44 +1,30 @@
-package utils;
+package hooks;
 
+import java.util.concurrent.TimeUnit;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
-import io.cucumber.java.*;
+import io.cucumber.java.Before;
+import io.cucumber.java.After;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.*;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
-public class AndroidSetup {
+public class Hooks {
     public static AppiumDriver driver;
 
-    private void androidSetupAppium() throws MalformedURLException {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("automationName", "UiAutomator2");
-        capabilities.setCapability("platformVersion", "9");
-        capabilities.setCapability("deviceName", "emulator-5554");
-        capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("app", System.getProperty("user.dir") + "/app/example.apk");
-        capabilities.setCapability("appPackage", "com.pinterest");
-        capabilities.setCapability("appActivity", ".activity.PinterestActivity");
-//        capabilities.setCapability("newCommandTimeout", 60 * 5);
-//        capabilities.setCapability("deviceReadyTimeout", 100);
-//        capabilities.setCapability("appWaitDuration", 1000000);
-        driver = new AndroidDriver(new URL("http://localhost:4723/"), capabilities);
-//        return driver;
-    }
-
-    /**
-     * In case it shows NullPointerException or driver is null,
-     * then call the androidSetup.setDriver manually from stepDefinitions Constructors
-     */
     @Before
-    public void setDriver() throws MalformedURLException {
-        androidSetupAppium();
-    }
+    public void setUp() throws Exception {
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability("automationName", "uiautomator2");
+        caps.setCapability("platformName", "Android");
+        caps.setCapability("deviceName", "emulator-5554");
+        caps.setCapability("app", System.getProperty("user.dir") + "/app/example.apk");
+        caps.setCapability("appPackage", "com.saucelabs.mydemoapp.android");
+        caps.setCapability("appActivity", "com.saucelabs.mydemoapp.android.view.activities.SplashActivity");
 
-    public AndroidDriver getDriver() {
-        return (AndroidDriver) driver;
+        driver = new AndroidDriver(new URL("http://localhost:4723/"), caps);
+        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+        System.out.println("Launching Appium...");
     }
 
     @After
@@ -47,10 +33,5 @@ public class AndroidSetup {
             driver.quit();
         }
     }
-
-    /**
-     * Note:
-     * adb uninstall io.appium.uiautomator2.server
-     * adb uninstall io.appium.uiautomator2.server.test
-     */
 }
+
